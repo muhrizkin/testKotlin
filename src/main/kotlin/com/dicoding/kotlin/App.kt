@@ -1,7 +1,8 @@
+// from https://www.dicoding.com/academies/80
 package com.dicoding.kotlin
 
 fun main(){
-    stringTemplate()
+    breakDanContinue()
 }
 
 fun fundamental() {
@@ -235,5 +236,112 @@ fun stringTemplate(){
     print("Office ${if (hour > 7) "already close" else "is open"}")
 }
 
+fun enumeration(){
+    val color: Color = Color.GREEN
+
+    when(color){
+        Color.RED -> print("Color is Red")
+        Color.BLUE -> print("Color is Blue")
+        Color.GREEN -> print("Color is Green")
+    }
+}
+enum class Color(val value: Int) {
+    RED(0xFF0000),
+    GREEN(0x00FF00),
+    BLUE(0x0000FF)
+}
+
+fun whenExpressions(){
+    val anyType: Any = 100L
+    when (anyType) {
+        is Long -> println("the value has a Long type")
+        is Int -> println("the value has a Int type")
+        is Double -> println("the value has a Double type")
+        else -> println("undefined")
+    }
+}
+
+fun expressionsDanStatements() {
+    val value1 = 10 // value1 dan value2 merupakan statements
+    val value2 = 10
+
+    sum(value1, value2) // ini expression
+}
+fun sum(value1: Int, value2: Int) = value1 + value2
+
+fun whileDanDoWhile(){
+    var counter = 1
+    while (counter <= 7){
+        println("Hello, World!")
+        counter++
+    }
+
+
+    do {
+        println("Hello, World!")
+        counter++
+    } while (counter <= 7)
+}
+
+fun forLoop(){
+    val ranges = 1.rangeTo(10) step 3 //ekstensi step yang akan mengembalikan nilai baru dengan tipe IntProgression dengan jarak nilai sebelumnya adalah 3
+    for (i in ranges ){
+        println("value is $i!")
+    }
+
+    for ((index, value) in ranges.withIndex()) {
+        println("value $value with index $index")
+    }
+
+    ranges.forEach { value ->
+        println("value is $value!")
+    }
+
+    ranges.forEachIndexed { index, value ->
+        println("value $value with index $index")
+    }
+}
+
+fun range(){
+    val rangeInt = 1..10 step 2
+    rangeInt.forEach {
+        print("$it ")
+    }
+    println(rangeInt.step)
+
+    val tenToOne = 10.downTo(1)
+    if (7 in tenToOne) {
+        println("Value 7 available")
+    }
+    if (11 !in tenToOne) {
+        println("No value 11 in Range ")
+    }
+
+    val rangeChar = 'A'.rangeTo('F')
+}
+
+fun breakDanContinue(){
+    val listOfInt = listOf(1, 2, 3, null, 5, null, 7)
+
+    for (i in listOfInt) {
+        if (i == null) continue
+        print(i)
+    }
+
+    for (i in listOfInt) {
+        if (i == null) break
+        print(i)
+    }
+
+    loop@ for (i in 1..10) {
+        println("Outside Loop")
+
+        for (j in 1..10) {
+            println("Inside Loop")
+            if ( j > 5) break@loop
+        }
+    }
+    //Pada kode diatas, break yang sudah ditandai dengan label akan dilompati ke titik awal proses perulangan yang sudah ditandai dengan label. break akan menghentikan proses perulangan terluar dari dalam proses perulangan, di mana break tersebut dipanggil
+}
 
 
